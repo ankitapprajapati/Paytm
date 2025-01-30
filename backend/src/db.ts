@@ -1,4 +1,3 @@
-import { number, required } from "joi";
 import mongoose from "mongoose"
 
 require ("dotenv").config()
