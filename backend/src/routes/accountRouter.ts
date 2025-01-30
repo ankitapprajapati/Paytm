@@ -80,6 +80,7 @@ accountRouter.post("/transfer",authMiddleware,async(req,res)=>{
 
     }
     catch(e){
+        await session.abortTransaction();
         res.status(503).json({
             message : "transection not happen !!"
         })
