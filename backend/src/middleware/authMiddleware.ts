@@ -32,7 +32,7 @@ export const authMiddleware = (req:Request,res:Response,next:NextFunction)=>{
             })
         }
     }
-    catch(e){
+    catch(e ){
         res.status(403).json({
             //@ts-ignore
             message: e.message

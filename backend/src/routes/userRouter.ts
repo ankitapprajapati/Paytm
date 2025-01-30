@@ -152,7 +152,7 @@ userRouter.put("/update",authMiddleware,async(req,res)=>{
     try{
         
         // Fetch user by userId
-        const user: Iuser | null = await User.findById(userId);
+        const user: any = await User.findById(userId);
 
         if( !user ){
             res.status(404).json({
