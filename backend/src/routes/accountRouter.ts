@@ -2,6 +2,7 @@ import express from 'express'
 import { authMiddleware } from '../middleware/authMiddleware';
 import { Account, User } from '../db';
 import mongoose from 'mongoose';
+import { amountTranferSchema } from '../zod_schema/amountTranferSchema';
 
 export const accountRouter = express.Router();
 
@@ -21,6 +22,16 @@ accountRouter.get("/balance",authMiddleware, async(req,res)=>{
 })
 
 accountRouter.post("/transfer",authMiddleware,async(req,res)=>{
+
+    // validation
+    const result = amountTranferSchema.safeParse(req.body)
+    if( !result.success ){
+        res.status(400).json({
+            message : result.error.issues[0].message,
+            feild   : result.error.issues[0].path[0],
+        })
+        return;
+    }
 
     const session = await mongoose.startSession();
     session.startTransaction();               // -----session start-------
@@ -81,6 +92,7 @@ accountRouter.post("/transfer",authMiddleware,async(req,res)=>{
     }
     catch(e){
         await session.abortTransaction();
+        console.log(e)
         res.status(503).json({
             message : "transection not happen !!"
         })
