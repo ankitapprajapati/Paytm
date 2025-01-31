@@ -1,7 +1,7 @@
 
 const SubHeading = ({label}:{label:string}) => {
   return (
-    <div>
+    <div className="text-sm mb-4">
         {label}      
     </div>
   )
