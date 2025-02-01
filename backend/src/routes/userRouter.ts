@@ -114,7 +114,7 @@ userRouter.post("/signin", async(req:Request,res:Response):Promise<void>=>{
             })
             return;
         }
-        const token = jwt.sign({userId:user._id},secret);
+        const token = jwt.sign({userId:user._id,exp: Math.floor(Date.now() / 1000) + (60 * 60)},secret);
 
         res.status(200).json({
             token:token,
@@ -124,6 +124,30 @@ userRouter.post("/signin", async(req:Request,res:Response):Promise<void>=>{
         res.json({
             // @ts-ignore
             message:e.message
+        })
+    }
+})
+
+userRouter.get("/me",(req,res)=>{
+    const authHeader = req.headers.authorization
+
+    if( !authHeader || !authHeader.startsWith("Bearer") ){
+        res.json({
+            message:"Session Expired"
+        })
+        return;
+    }
+
+    const token = authHeader?.split(" ")[1]
+
+    try{
+        jwt.verify(token,secret)
+        res.status(200).json({
+            message:"authorized"
+        })
+    }catch(e){
+        res.json({
+            message:"session is expired !!"
         })
     }
 })
