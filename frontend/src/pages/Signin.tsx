@@ -25,11 +25,12 @@ const Signin = () => {
           email,
           password
         })
-        localStorage.setItem("token",response.data.token)
+        localStorage.setItem("token",`${response.data.token}`)
         navigate("/dashboard")
       }
       catch(e){
-        alert("server error")
+        console.log(e)
+        alert(e)
       }
     }
   return (

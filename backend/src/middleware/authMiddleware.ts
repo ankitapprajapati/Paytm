@@ -13,7 +13,7 @@ export const authMiddleware = (req:Request,res:Response,next:NextFunction)=>{
 
     if( !authHeader || !authHeader.startsWith('Bearer ')) {
         res.status(401).json({
-            message : "auth token is missing "
+            message : "session Expired"
         })
         return;
     }

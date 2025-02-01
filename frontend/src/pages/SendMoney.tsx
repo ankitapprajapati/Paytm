@@ -1,13 +1,13 @@
 
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams,useNavigate } from "react-router-dom"
 import Heading from "../components/Heading"
 import InputBox from "../components/InputBox"
 import { useState } from "react"
 import axios from "axios"
 
-
-
 const SendMoney = () => {
+
+  const navigate = useNavigate()
 
   const [amount,setAmount]=useState<number>();
   const [searchParams] = useSearchParams();
@@ -32,9 +32,10 @@ const SendMoney = () => {
         }
       })
       alert(response.data.message)
+      navigate("/dashboard")
     }
-    catch(e){
-
+    catch(e:any){
+      alert(e.message)
     }
   }
 
