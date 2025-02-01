@@ -6,10 +6,13 @@ import Button from "../components/Button"
 import Heading from "../components/Heading"
 import InputBox from "../components/InputBox"
 import SubHeading from "../components/SubHeading"
+import { useNavigate } from 'react-router-dom'
 
 
 
 const Signup = () => {
+
+  const navigate = useNavigate()
 
   const [firstName,setFirstName] = useState<string>("");
   const [lastName,setLastName] = useState<string>("");
@@ -29,13 +32,21 @@ const Signup = () => {
     setPassword(event.target.value)
   }
 
-  const signupHandler = ()=>{
-    axios.post("https://paytmapp-nm0r.onrender.com/api/v1/user/signup",{
-      firstName,
-      lastName,
-      email,
-      password
-    })
+  const signupHandler = async ()=>{
+
+    try{
+      const response = await axios.post("https://paytmapp-nm0r.onrender.com/api/v1/user/signup",{
+        firstName,
+        lastName,
+        email,
+        password
+      })
+      alert(response.data.message);
+      navigate("/signin")
+    }
+    catch(e:any ){
+      alert(e.message)
+    }
   }
 
 
