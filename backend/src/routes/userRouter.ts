@@ -10,6 +10,7 @@ import { signinSchema } from '../zod_schema/signinSchema'
 import { authMiddleware } from '../middleware/authMiddleware'
 import { updateSchema } from '../zod_schema/updateSchema'
 import { Iuser } from '../types/mongoose'
+import mongoose from 'mongoose'
 
 require("dotenv").config()
 if( !process.env.JWT_SECRET ){
@@ -122,6 +123,28 @@ userRouter.post("/signin", async(req:Request,res:Response):Promise<void>=>{
     catch(e){
         res.json({
             // @ts-ignore
+            message:e.message
+        })
+    }
+})
+
+userRouter.get("/info",authMiddleware,async(req,res)=>{
+    const userId = req.userId;
+    try{
+        const userInfo = await User.findById(userId).select({ firstName:1,lastName:1,email:1})
+        if( !userInfo ){
+            res.status(402).json({
+                message: "user does not exist"
+            })
+            return;
+        }
+        res.status(200).json({
+            user:userInfo
+        })
+    }
+    catch(e){
+        res.status(502).json({
+            //@ts-ignore
             message:e.message
         })
     }
