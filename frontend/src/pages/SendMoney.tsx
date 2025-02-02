@@ -4,8 +4,11 @@ import Heading from "../components/Heading"
 import InputBox from "../components/InputBox"
 import { useState } from "react"
 import axios from "axios"
+import useAuth from "../hooks/useAuth"
 
 const SendMoney = () => {
+
+  useAuth()
 
   const navigate = useNavigate()
 

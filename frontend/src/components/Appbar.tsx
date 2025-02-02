@@ -19,16 +19,13 @@ const Appbar = () => {
                     }
                 })  
                 if( !response.data ){
-                    alert("try again !!")
+                    throw new Error("unauthorised")
                     navigate("/signin")
                 }
-                console.log(response.data)
-                console.log("appbar success")
-                setUser(response.data) ; 
+                setUser(response.data.user) ; 
             }     
-            catch(e){
-                console.log("appbar error")
-                alert("you are un-authorised")                
+            catch(e){     
+                console.log("can not get user detial : "+e)          
                 navigate("/signin")
             }
         }
@@ -55,7 +52,7 @@ const Appbar = () => {
                 <div className="flex flex-col items-center justify-center h-full mr-4">
                     {user?.firstName}
                 </div>  
-                <Profile label={ user && user.firstName[0].toUpperCase() || "X"} />    
+                <Profile label={ user?.firstName?.charAt(0)?.toUpperCase() || " "} />    
             </div>
         </div>
     

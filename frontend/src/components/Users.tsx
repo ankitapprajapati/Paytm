@@ -17,7 +17,6 @@ const Users = () => {
       try{
         const response =await axios.get(`https://paytmapp-nm0r.onrender.com/api/v1/user/bulk?filter=${filter}`)
         setUsers(response.data.user)
-        console.log(response.data.user)
         setLoading(true)
       }
       catch(e){
@@ -37,10 +36,10 @@ const Users = () => {
 
       {/* loading users----------- */}
       { !loading ? 
-        <p text-center mt-4 text-gray-500>Loading Users......</p>
+        <p className="text-center mt-4 text-gray-500">Loading Users......</p>
         :
         <div className="flex flex-col mt-4 gap-4">
-          { users.length>0 && users.map( (user)=> <User user={user}/>)}
+          { users.length>0 && users.map( (user,index)=> <User key={index} user={user}/>)}
         </div>
       }
     </div>

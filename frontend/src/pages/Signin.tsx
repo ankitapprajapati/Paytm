@@ -7,9 +7,16 @@ import Heading from "../components/Heading"
 import InputBox from "../components/InputBox"
 import SubHeading from "../components/SubHeading"
 import { useNavigate } from 'react-router-dom'
+import useAuth from '../hooks/useAuth'
 
 const Signin = () => {
+  
+  const isAuthenticated = useAuth()
   const navigate = useNavigate()
+  if( isAuthenticated ){
+    navigate("/dashboard");
+  }
+
   const [email,setEmail] = useState<string>("")
   const [password,setPassword] = useState<string>("")
 

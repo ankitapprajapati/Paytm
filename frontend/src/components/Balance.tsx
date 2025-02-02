@@ -3,20 +3,21 @@ import { useEffect,useState } from "react"
 
 
 const Balance = () => {
-  const [balance,setBalance] = useState<Number>(0);
+
+  const [balance,setBalance] = useState<number>(0);
 
   useEffect( ()=>{
     const getBalance = async () => {
       try{
         const response = await axios.get("https://paytmapp-nm0r.onrender.com/api/v1/account/balance",{
           headers:{
-            authorizatoin:`Bearer ${localStorage.getItem("token")}`
+            Authorization:`Bearer ${localStorage.getItem("token")}`
           }
         })
-        setBalance(response.data)
+        setBalance(response.data.balance)
       }
       catch(e){
-        alert("unable to find balance")
+        console.log("can not get balance : "+e)
       }
     }
     getBalance()

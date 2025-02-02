@@ -7,12 +7,17 @@ import Heading from "../components/Heading"
 import InputBox from "../components/InputBox"
 import SubHeading from "../components/SubHeading"
 import { useNavigate } from 'react-router-dom'
+import useAuth from '../hooks/useAuth'
 
 
 
 const Signup = () => {
-
+  
+  const isAuthenticated = useAuth()
   const navigate = useNavigate()
+  if( isAuthenticated ){
+    navigate("/dashboard");
+  }
 
   const [firstName,setFirstName] = useState<string>("");
   const [lastName,setLastName] = useState<string>("");
