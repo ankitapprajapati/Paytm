@@ -9,7 +9,9 @@ if( !process.env.JWT_SECRET ){
 const JWT_SECRET = process.env.JWT_SECRET;
 
 export const authMiddleware = (req:Request,res:Response,next:NextFunction)=>{
-    const authHeader = req.headers.authorization;
+    console.log(req.headers)
+    const authHeader = req.headers.authorization as string
+    console.log(authHeader);
 
     if( !authHeader || !authHeader.startsWith('Bearer ')) {
         res.status(401).json({
