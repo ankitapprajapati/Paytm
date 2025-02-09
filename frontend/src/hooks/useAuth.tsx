@@ -10,6 +10,7 @@ const useAuth = () => {
     useEffect( ()=>{
         const userToken = localStorage.getItem("token");
         if( !userToken ){
+          console.log("no token found")
           navigate("/signin");
           return;
         }
@@ -29,8 +30,7 @@ const useAuth = () => {
             }
           }
           catch(e){
-            console.log("token verification failed : "+e)
-            alert("session expired, please sign in again")
+            console.log("unable to reach backend")
             navigate("/signin")
           }
         }
