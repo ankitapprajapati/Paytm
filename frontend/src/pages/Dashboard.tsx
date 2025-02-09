@@ -12,7 +12,7 @@ const Dashboard = () => {
     isAuthorized &&
     <div className="bg-slate-300 h-screen flex flex-col ">
       <Appbar/>
-      <div className="flex flex-col items-center  justify-center mt-4 px-4 sm:px-8 md:px-16 lg:px-32 w-full ">
+      <div className="flex flex-col items-center  justify-center mt-4 sm:px-8 md:px-16 lg:px-32 w-full ">
         <div className="w-full max-w-screen-lg"> 
           <Balance/>
           <Users/>
