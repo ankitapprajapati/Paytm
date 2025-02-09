@@ -12,23 +12,25 @@ const User = ({user}:{ user:{firstName:string,lastName:string,email:string}}) =>
   
   return (
     <div className="flex items-center justify-between bg-slate-100 px-4 py-3 rounded-lg shadow-md w-full sm:w-auto">
-  {/* Profile Logo & Name Section */}
-  <div className="flex items-center gap-3">
-    {/* Profile Logo */}
-    <div className="rounded-full h-12 w-12 text-center bg-slate-200 text-xl flex justify-center items-center">
-      {user.firstName[0].toUpperCase()}
+    {/* Profile Logo & Name Section */}
+    <div className="flex items-center gap-3">
+      {/* Profile Logo */}
+      <div className="rounded-full h-12 w-12 text-center bg-slate-200 text-xl flex justify-center items-center font-semibold">
+        {user.firstName[0].toUpperCase()}
+      </div>
+  
+      {/* Name & Email (Stacked on Mobile, Inline on Desktop) */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+        <div className="font-semibold text-lg">{user.firstName} {user.lastName}</div>
+        <div className="text-sm text-gray-600 sm:ml-2">{user.email}</div>
+      </div>
     </div>
-
-    {/* Name & Email */}
-    <div className="flex flex-col">
-      <div className="font-semibold text-lg">{user.firstName} {user.lastName}</div>
-      <div className="text-sm text-gray-600">{user.email}</div>
-    </div>
+  
+    {/* Send Money Button */}
+    <Button onClick={handleSendMoney} label="Send Money" />
   </div>
+  
 
-  {/* Send Money Button */}
-  <Button onClick={handleSendMoney} label="Send Money"  />
-</div>
   )
 }
 
