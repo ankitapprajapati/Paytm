@@ -39,17 +39,16 @@ const Appbar = () => {
     }
 
   return (    
-        <div className="flex justify-between items-center h-14 shadow  md:px-10 bg-pink-200">
+        <div className="flex justify-between items-center h-14 shadow-md px-4 md:px-10 bg-pink-200">
             <Link to={"/dashboard"} >
-                <div className="flex items-center justify-center h-full ml-4 font-semibold ">
+                <div className="flex items-center justify-center h-full  font-semibold text-lg md:text-xl">
                     PayTM App
                 </div>
             </Link>
-            <div className="flex items-center gap-2 ">
-                <div className="flex flex-col items-center justify-center h-full mr-4">
-                    <Button onClick={handleSignOut} label="sign out"/>
-                </div>
-                <div className="flex flex-col items-center justify-center h-full mr-4">
+            <div className="flex items-center gap-2 mt-2 md:mt-0">
+                
+                <Button onClick={handleSignOut} label="sign out"/>
+                <div className=" hidden sm:block font-medium">
                     {user?.firstName}
                 </div>  
                 <Profile label={ user?.firstName?.charAt(0)?.toUpperCase() || " "} />    

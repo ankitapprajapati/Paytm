@@ -38,7 +38,7 @@ const Users = () => {
       { !loading ? 
         <p className="text-center mt-4 text-gray-500">Loading Users......</p>
         :
-        <div className="flex flex-col mt-4 gap-4">
+        <div className="grid grid-cols-1 gap-4 mt-4">
           { users.length>0 && users.map( (user,index)=> <User key={index} user={user}/>)}
         </div>
       }

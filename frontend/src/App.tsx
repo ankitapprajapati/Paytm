@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
+        <Routes >
           <Route path='/'          element={<Navigate to="/dashboard"/>} />
           <Route path='/signup'    element={<Signup/>}  />
           <Route path='/signin'    element={<Signin/>}  />
@@ -19,7 +19,7 @@ function App() {
           <Route path='/send'      element={<SendMoney/>}  />
           <Route path='/status'    element={<PaymentStatus/>} />
           <Route path='*'          element={<PageNotFound/>} />
-        </Routes>
+        </Routes >
       </BrowserRouter>
     </>
   )
